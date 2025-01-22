@@ -1,0 +1,27 @@
+class Main {
+    function void main() {
+        var int i, j;
+        var Cell c, d;
+        var Edge e;
+        var Board b;
+
+        /* let i = 0;
+        while (i < 256) {
+            let j = 0;
+            while (j < 32) {
+                do Memory.poke(16384 + (32*i) + j, 21845);
+                do Memory.poke(16384 + (32*(i+1)) + j, -21846);
+                let j = j + 1;
+            }
+            let i = i + 2;
+        }
+        */
+
+        let b = Board.new(128,17);
+        do b.draw_borders();
+        do b.fill_diamond();
+        do b.fill_cross();
+        do b.dispose();
+        return;
+    }
+}

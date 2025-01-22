@@ -1,0 +1,55 @@
+class Vert {
+    field Cell c0, c1, c2;
+    field int y_min, y_max, x_all;
+
+    constructor Edge new(Cell x, Cell y, Cell z) {
+        let c0 = x;
+        let c1 = y;
+        let c2 = z;
+        let x_all = c0.get_x();
+        let y_min = Math.min(c0.get_y(), c1.get_y());
+        let y_min = Math.min(y_min, c2.get_y());
+        let y_max = Math.max(c0.get_y(), c1.get_y());
+        let y_max = Math.max(y_max, c2.get_y());
+        return this;
+    }
+
+    method void draw_borders() {
+        do c0.draw_border();
+        do c1.draw_border();
+        do c2.draw_border();
+        do Screen.drawLine(x_all, y_min, x_all, y_max);
+        do clear_cells();
+        return;
+    }
+
+    method void fill_diamond() {
+        do c0.fill_diamond();
+        do c1.fill_diamond();
+        do c2.fill_diamond();
+        return;
+    }
+
+    method void fill_cross() {
+        do c0.fill_cross();
+        do c1.fill_cross();
+        do c2.fill_cross();
+        return;
+    }
+
+    method void clear_cells() {
+        do c0.clear_cell();
+        do c1.clear_cell();
+        do c2.clear_cell();
+        return;
+    }
+
+    method void dispose() {
+        do c0.dispose();
+        do c1.dispose();
+        do c2.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+}

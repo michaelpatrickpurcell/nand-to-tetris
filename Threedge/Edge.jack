@@ -1,0 +1,62 @@
+class Edge {
+    field Cell c0, c1, c2, c3;
+    field int y_all, x_min, x_max;
+
+    constructor Edge new(Cell w, Cell x, Cell y, Cell z) {
+        let c0 = w;
+        let c1 = x;
+        let c2 = y;
+        let c3 = z;
+        let y_all = c0.get_y();
+        let x_min = Math.min(c0.get_x(), c1.get_x());
+        let x_min = Math.min(x_min, c2.get_x());
+        let x_min = Math.min(x_min, c3.get_x());
+        let x_max = Math.max(c0.get_x(), c1.get_x());
+        let x_max = Math.max(x_max, c2.get_x());
+        let x_max = Math.max(x_max, c3.get_x());
+        return this;
+    }
+
+    method void draw_borders() {
+        do c0.draw_border();
+        do c1.draw_border();
+        do c2.draw_border();
+        do c3.draw_border();
+        do Screen.drawLine(x_min, y_all, x_max, y_all);
+        do clear_cells();
+        return;
+    }
+
+    method void fill_diamond() {
+        do c0.fill_diamond();
+        do c1.fill_diamond();
+        do c2.fill_diamond();
+        do c3.fill_diamond();
+        return;
+    }
+
+    method void fill_cross() {
+        do c0.fill_cross();
+        do c1.fill_cross();
+        do c2.fill_cross();
+        do c3.fill_cross();
+        return;
+    }
+
+    method void clear_cells() {
+        do c0.clear_cell();
+        do c1.clear_cell();
+        do c2.clear_cell();
+        do c3.clear_cell();
+        return;
+    }
+
+    method void dispose() {
+        do c0.dispose();
+        do c1.dispose();
+        do c2.dispose();
+        do c3.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

@@ -1,0 +1,237 @@
+class Board {
+    field Edge e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, ea, eb, ec, ed, ee;
+    field Vert v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, va, vb, vc, vd, ve, vf, v10, v11, v12, v13;
+
+    field Cell c00, c01, c02, c03;
+    field Cell c10, c11, c12, c13;
+    field Cell c20, c21, c22, c23;
+    field Cell c30, c31, c32, c33;
+    field Cell c40, c41, c42, c43;
+    field Cell c50, c51, c52, c53;
+    field Cell c60, c61, c62, c63;
+    field Cell c70, c71, c72, c73;
+    field Cell c80, c81, c82, c83;
+    field Cell c90, c91, c92, c93;
+    field Cell ca0, ca1, ca2, ca3;
+    field Cell cb0, cb1, cb2, cb3;
+    field Cell cc0, cc1, cc2, cc3;
+    field Cell cd0, cd1, cd2, cd3;
+    field Cell ce0, ce1, ce2, ce3;
+
+    field int x_off, y_off;
+
+    constructor Board new(int x_offset, int y_offset) {
+        let c00 = Cell.new(x_offset + (4*16), y_offset + (0*16));
+        let c01 = Cell.new(x_offset + (6*16), y_offset + (0*16));
+        let c02 = Cell.new(x_offset + (13*16), y_offset + (0*16));
+        let c03 = Cell.new(x_offset + (14*16), y_offset + (0*16));
+        let e0 = Edge.new(c00, c01, c02, c03);
+
+        let c10 = Cell.new(x_offset + (9*16), y_offset + (1*16));
+        let c11 = Cell.new(x_offset + (14*16), y_offset + (1*16));
+        let c12 = Cell.new(x_offset + (16*16), y_offset + (1*16));
+        let c13 = Cell.new(x_offset + (19*16), y_offset + (1*16));
+        let e1 = Edge.new(c10, c11, c12, c13);
+
+        let c20 = Cell.new(x_offset + (0*16), y_offset + (2*16));
+        let c21 = Cell.new(x_offset + (4*16), y_offset + (2*16));
+        let c22 = Cell.new(x_offset + (10*16), y_offset + (2*16));
+        let c23 = Cell.new(x_offset + (19*16), y_offset + (2*16));
+        let e2 = Edge.new(c20, c21, c22, c23);
+
+        let c30 = Cell.new(x_offset + (0*16), y_offset + (3*16));
+        let c31 = Cell.new(x_offset + (1*16), y_offset + (3*16));
+        let c32 = Cell.new(x_offset + (13*16), y_offset + (3*16));
+        let c33 = Cell.new(x_offset + (16*16), y_offset + (3*16));
+        let e3 = Edge.new(c30, c31, c32, c33);
+
+        let c40 = Cell.new(x_offset + (1*16), y_offset + (4*16));
+        let c41 = Cell.new(x_offset + (6*16), y_offset + (4*16));
+        let c42 = Cell.new(x_offset + (9*16), y_offset + (4*16));
+        let c43 = Cell.new(x_offset + (10*16), y_offset + (4*16));
+        let e4 = Edge.new(c40, c41, c42, c43);
+
+        let c50 = Cell.new(x_offset + (2*16), y_offset + (5*16));
+        let c51 = Cell.new(x_offset + (11*16), y_offset + (5*16));
+        let c52 = Cell.new(x_offset + (14*16), y_offset + (5*16));
+        let c53 = Cell.new(x_offset + (18*16), y_offset + (5*16));
+        let e5 = Edge.new(c50, c51, c52, c53);
+
+        let c60 = Cell.new(x_offset + (2*16), y_offset + (6*16));
+        let c61 = Cell.new(x_offset + (4*16), y_offset + (6*16));
+        let c62 = Cell.new(x_offset + (5*16), y_offset + (6*16));
+        let c63 = Cell.new(x_offset + (7*16), y_offset + (6*16));
+        let e6 = Edge.new(c60, c61, c62, c63);
+
+        let c70 = Cell.new(x_offset + (7*16), y_offset + (7*16));
+        let c71 = Cell.new(x_offset + (13*16), y_offset + (7*16));
+        let c72 = Cell.new(x_offset + (15*16), y_offset + (7*16));
+        let c73 = Cell.new(x_offset + (18*16), y_offset + (7*16));
+        let e7 = Edge.new(c70, c71, c72, c73);
+
+        let c80 = Cell.new(x_offset + (5*16), y_offset + (8*16));
+        let c81 = Cell.new(x_offset + (6*16), y_offset + (8*16));
+        let c82 = Cell.new(x_offset + (11*16), y_offset + (8*16));
+        let c83 = Cell.new(x_offset + (15*16), y_offset + (8*16));
+        let e8 = Edge.new(c80, c81, c82, c83);
+
+        let c90 = Cell.new(x_offset + (2*16), y_offset + (9*16));
+        let c91 = Cell.new(x_offset + (8*16), y_offset + (9*16));
+        let c92 = Cell.new(x_offset + (12*16), y_offset + (9*16));
+        let c93 = Cell.new(x_offset + (19*16), y_offset + (9*16));
+        let e9 = Edge.new(c90, c91, c92, c93);
+
+        let ca0 = Cell.new(x_offset + (3*16), y_offset + (10*16));
+        let ca1 = Cell.new(x_offset + (12*16), y_offset + (10*16));
+        let ca2 = Cell.new(x_offset + (16*16), y_offset + (10*16));
+        let ca3 = Cell.new(x_offset + (18*16), y_offset + (10*16));
+        let ea = Edge.new(ca0, ca1, ca2, ca3);
+
+        let cb0 = Cell.new(x_offset + (3*16), y_offset + (11*16));
+        let cb1 = Cell.new(x_offset + (8*16), y_offset + (11*16));
+        let cb2 = Cell.new(x_offset + (9*16), y_offset + (11*16));
+        let cb3 = Cell.new(x_offset + (11*16), y_offset + (11*16));
+        let eb = Edge.new(cb0, cb1, cb2, cb3);
+
+        let cc0 = Cell.new(x_offset + (0*16), y_offset + (12*16));
+        let cc1 = Cell.new(x_offset + (7*16), y_offset + (12*16));
+        let cc2 = Cell.new(x_offset + (12*16), y_offset + (12*16));
+        let cc3 = Cell.new(x_offset + (17*16), y_offset + (12*16));
+        let ec = Edge.new(cc0, cc1, cc2, cc3);
+
+        let cd0 = Cell.new(x_offset + (5*16), y_offset + (13*16));
+        let cd1 = Cell.new(x_offset + (8*16), y_offset + (13*16));
+        let cd2 = Cell.new(x_offset + (10*16), y_offset + (13*16));
+        let cd3 = Cell.new(x_offset + (17*16), y_offset + (13*16));
+        let ed = Edge.new(cd0, cd1, cd2, cd3);
+
+        let ce0 = Cell.new(x_offset + (1*16), y_offset + (14*16));
+        let ce1 = Cell.new(x_offset + (3*16), y_offset + (14*16));
+        let ce2 = Cell.new(x_offset + (15*16), y_offset + (14*16));
+        let ce3 = Cell.new(x_offset + (17*16), y_offset + (14*16));
+        let ee = Edge.new(ce0, ce1, ce2, ce3);
+
+        let v0 = Vert.new(c20, c30, cc0);
+        let v1 = Vert.new(c31, c40, ce0);
+        let v2 = Vert.new(c50, c60, c90);
+        let v3 = Vert.new(ca0, cb0, ce1);
+        let v4 = Vert.new(c00, c21, c61);
+        let v5 = Vert.new(c62, c80, cd0);
+        let v6 = Vert.new(c01, c41, c81);
+        let v7 = Vert.new(c63, c70, cc1);
+        let v8 = Vert.new(c91, cb1, cd1);
+        let v9 = Vert.new(c10, c42, cb2);
+        let va = Vert.new(c22, c43, cd2);
+        let vb = Vert.new(c51, c82, cb3);
+        let vc = Vert.new(c92, ca1, cc2);
+        let vd = Vert.new(c02, c32, c71);
+        let ve = Vert.new(c03, c11, c52);
+        let vf = Vert.new(c72, c83, ce2);
+        let v10 = Vert.new(c12, c33, ca2);
+        let v11 = Vert.new(cc3, cd3, ce3);
+        let v12 = Vert.new(c53, c73, ca3);
+        let v13 = Vert.new(c13, c23, c93);
+
+        let x_off = x_offset;
+        let y_off = y_offset;
+        return this; 
+    }
+
+    method void draw_borders() {
+        /*
+        do Screen.drawLine(x_off + (0*16), y_off + (2*16), x_off + (0*16), y_off + (12*16));
+        do Screen.drawLine(x_off + (1*16), y_off + (3*16), x_off + (1*16), y_off + (14*16));
+        do Screen.drawLine(x_off + (2*16), y_off + (5*16), x_off + (2*16), y_off + (9*16));
+        do Screen.drawLine(x_off + (3*16), y_off + (10*16), x_off + (3*16), y_off + (14*16));
+        do Screen.drawLine(x_off + (4*16), y_off + (0*16), x_off + (4*16), y_off + (6*16));
+        do Screen.drawLine(x_off + (5*16), y_off + (6*16), x_off + (5*16), y_off + (13*16));
+        do Screen.drawLine(x_off + (6*16), y_off + (0*16), x_off + (6*16), y_off + (8*16));
+        do Screen.drawLine(x_off + (7*16), y_off + (6*16), x_off + (7*16), y_off + (12*16));
+        do Screen.drawLine(x_off + (8*16), y_off + (9*16), x_off + (8*16), y_off + (13*16));
+        do Screen.drawLine(x_off + (9*16), y_off + (1*16), x_off + (9*16), y_off + (11*16));
+        do Screen.drawLine(x_off + (10*16), y_off + (2*16), x_off + (10*16), y_off + (13*16));
+        do Screen.drawLine(x_off + (11*16), y_off + (5*16), x_off + (11*16), y_off + (11*16));
+        do Screen.drawLine(x_off + (12*16), y_off + (9*16), x_off + (12*16), y_off + (12*16));
+        do Screen.drawLine(x_off + (13*16), y_off + (0*16), x_off + (13*16), y_off + (7*16));
+        do Screen.drawLine(x_off + (14*16), y_off + (0*16), x_off + (14*16), y_off + (5*16));
+        do Screen.drawLine(x_off + (15*16), y_off + (7*16), x_off + (15*16), y_off + (14*16));
+        do Screen.drawLine(x_off + (16*16), y_off + (1*16), x_off + (16*16), y_off + (10*16));
+        do Screen.drawLine(x_off + (17*16), y_off + (12*16), x_off + (17*16), y_off + (14*16));
+        do Screen.drawLine(x_off + (18*16), y_off + (5*16), x_off + (18*16), y_off + (10*16));
+        do Screen.drawLine(x_off + (19*16), y_off + (1*16), x_off + (19*16), y_off + (9*16));
+        */
+
+        do e0.draw_borders();
+        do e1.draw_borders();
+        do e2.draw_borders();
+        do e3.draw_borders();
+        do e4.draw_borders();
+        do e5.draw_borders();
+        do e6.draw_borders();
+        do e7.draw_borders();
+        do e8.draw_borders();
+        do e9.draw_borders();
+        do ea.draw_borders();
+        do eb.draw_borders();
+        do ec.draw_borders();
+        do ed.draw_borders();
+        do ee.draw_borders();
+
+        do v0.draw_borders();
+        do v1.draw_borders();
+        do v2.draw_borders();
+        do v3.draw_borders();
+        do v4.draw_borders();
+        do v5.draw_borders();
+        do v6.draw_borders();
+        do v7.draw_borders();
+        do v8.draw_borders();
+        do v9.draw_borders();
+        do va.draw_borders();
+        do vb.draw_borders();
+        do vc.draw_borders();
+        do vd.draw_borders();
+        do ve.draw_borders();
+        do vf.draw_borders();
+        do v10.draw_borders();
+        do v11.draw_borders();
+        do v12.draw_borders();
+        do v13.draw_borders();
+
+        return;
+    }
+
+    method void fill_diamond() {
+        do e0.fill_diamond();
+        do v0.fill_cross();
+        return;
+    }
+
+    method void fill_cross() {
+        // do e2.fill_cross();
+        return;
+    }
+
+    method void dispose() {
+        do e0.dispose();
+        /*
+        do e1.dispose();
+        do e2.dispose();
+        do e3.dispose();
+        do e4.dispose();
+        do e5.dispose();
+        do e6.dispose();
+        do e7.dispose();
+        do e8.dispose();
+        do e9.dispose();
+        do ea.dispose();
+        do eb.dispose();
+        do ec.dispose();
+        do ed.dispose();
+        do ee.dispose();
+        */
+        do Memory.deAlloc(this);
+        return;
+    }
+
+}

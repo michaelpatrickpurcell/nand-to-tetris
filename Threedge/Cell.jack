@@ -1,0 +1,62 @@
+class Cell {
+    field int x_pos, y_pos;
+
+    constructor Cell new(int x, int y) {
+        let x_pos = x;
+        let y_pos = y;
+        return this;
+    }
+
+    method void draw_border() {
+        do Screen.drawLine(x_pos-6, y_pos-6, x_pos+6, y_pos-6);
+        do Screen.drawLine(x_pos-6, y_pos+6, x_pos+6, y_pos+6);
+        do Screen.drawLine(x_pos-6, y_pos-6, x_pos-6, y_pos+6);
+        do Screen.drawLine(x_pos+6, y_pos-6, x_pos+6, y_pos+6);
+        return;
+    }
+
+    method void fill_diamond() {
+        do Screen.drawLine(x_pos, y_pos-5, x_pos+5, y_pos);
+        do Screen.drawLine(x_pos, y_pos+5, x_pos+5, y_pos);
+        do Screen.drawLine(x_pos, y_pos+5, x_pos-5, y_pos);
+        do Screen.drawLine(x_pos, y_pos-5, x_pos-5, y_pos);
+        return;
+    }
+
+    method void fill_cross() {
+        do Screen.drawLine(x_pos-5, y_pos-5, x_pos+5, y_pos+5);
+        do Screen.drawLine(x_pos+5, y_pos-5, x_pos-5, y_pos+5);
+        return;
+    }
+
+    method void fill_plus() {
+        do Screen.drawLine(x_pos, y_pos-5, x_pos, y_pos+5);
+        do Screen.drawLine(x_pos-5, y_pos, x_pos+5, y_pos);
+        return;
+    }
+
+    method void clear_cell() {
+        var int i;
+        let i = -5;
+        do Screen.setColor(false);
+        while (i < 6) {
+            do Screen.drawLine(x_pos-5, y_pos+i, x_pos+5, y_pos+i);
+            let i =  i + 1;
+        }
+        do Screen.setColor(true);
+        return;
+    }
+
+    method int get_x() {
+        return x_pos;
+    }
+
+    method int get_y() {
+        return y_pos;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}
