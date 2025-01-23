@@ -1,9 +1,17 @@
 class Main {
     function void main() {
         var int i, j;
+        var int delta;
+        var int score_p1, score_p2, max_score;
+        var String s;
+
+        var Array hits;
+
         var Cell c, d;
         var Edge e;
         var Board b;
+
+        var Array hits;
 
         /* let i = 0;
         while (i < 256) {
@@ -17,10 +25,47 @@ class Main {
         }
         */
 
-        let b = Board.new(128,17);
+        let b = Board.new(180,16);
         do b.draw_borders();
-        do b.fill_diamond();
-        do b.fill_cross();
+
+        let score_p1 = 0;
+        let score_p2 = 0;
+
+        let max_score = Math.max(score_p1, score_p2);
+
+        let j = 0;
+        while (j < 20) {
+            if ((j & 1) = 0) {
+                do b.clear_text();
+                do b.print_scores(score_p1, score_p2);
+                do Output.moveCursor(0,0);
+                do Output.printString("Player 1's Turn");
+                do Output.println();
+                let s = Keyboard.readLine("Choose a row: ");
+                let i = s.intValue();
+                do b.fill_diamond(i);
+                do b.check_triangles();
+                let delta = b.score_hits(1);
+                let score_p1 = score_p1 + delta;
+                do Sys.wait(1000);
+                do b.clear_hits();
+            } else {
+                do b.clear_text();
+                do b.print_scores(score_p1, score_p2);
+                do Output.moveCursor(0,0);
+                do Output.printString("Player 2's Turn");
+                do Output.println();
+                let s = Keyboard.readLine("Choose a row: ");
+                let i = s.intValue();
+                do b.fill_cross(i);
+                do b.check_triangles();
+                let delta = b.score_hits(-1);
+                let score_p2 = score_p2 + delta;
+                do Sys.wait(1000);
+                do b.clear_hits();
+            }
+            let j = j + 1;
+        }
         do b.dispose();
         return;
     }

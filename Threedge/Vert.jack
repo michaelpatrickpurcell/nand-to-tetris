@@ -1,11 +1,15 @@
 class Vert {
     field Cell c0, c1, c2;
     field int y_min, y_max, x_all;
+    field int r0, r1, r2;
 
-    constructor Edge new(Cell x, Cell y, Cell z) {
+    constructor Edge new(Cell x, Cell y, Cell z, int row0, int row1, int row2) {
         let c0 = x;
         let c1 = y;
         let c2 = z;
+        let r0 = row0;
+        let r1 = row1;
+        let r2 = row2;
         let x_all = c0.get_x();
         let y_min = Math.min(c0.get_y(), c1.get_y());
         let y_min = Math.min(y_min, c2.get_y());
@@ -42,6 +46,33 @@ class Vert {
         do c1.clear_cell();
         do c2.clear_cell();
         return;
+    }
+
+    method int check_triangle() {
+        var int total;
+        var int triangle;
+
+        let triangle = 0;
+        let total = c0.get_state() + c1.get_state() + c2.get_state();
+        if (total = 3) {
+            let triangle = 1;
+        }
+        if (total = -3) {
+            let triangle = -1;
+        }
+        return triangle;
+    }
+
+    method int get_r0() {
+        return r0;
+    }
+
+    method int get_r1() {
+        return r1;
+    }
+
+    method int get_r2() {
+        return r2;
     }
 
     method void dispose() {
